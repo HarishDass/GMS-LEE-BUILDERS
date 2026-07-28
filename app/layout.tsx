@@ -25,41 +25,50 @@ const barlowCondensed = Barlow_Condensed({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.gmsleepteltd.com"),
 
+  applicationName: "GMS LEE PTE LTD",
+
   title: {
     default:
-      "GMS LEE PTE LTD | Handyman & Building Maintenance Services Singapore",
+      "Handyman, Renovation & Building Maintenance Services in Singapore | GMS LEE PTE LTD",
     template: "%s | GMS LEE PTE LTD",
   },
 
   description:
-    "Professional handyman, building maintenance, painting, electrical, plumbing and renovation services across Singapore. Residential and commercial solutions with fast response and quality workmanship.",
+    "GMS LEE PTE LTD provides professional handyman, renovation, painting, plumbing, electrical and building maintenance services across Singapore. Fast response, quality workmanship and reliable service for residential and commercial properties.",
 
   keywords: [
     "Handyman Singapore",
     "Building Maintenance Singapore",
-    "Building Contractor Singapore",
+    "Renovation Contractor Singapore",
+    "General Contractor Singapore",
     "Home Repair Singapore",
-    "Office Maintenance",
+    "Commercial Renovation Singapore",
+    "Residential Renovation Singapore",
+    "Office Renovation Singapore",
     "Painting Services Singapore",
     "Electrical Services Singapore",
     "Plumbing Services Singapore",
-    "Renovation Contractor Singapore",
-    "General Contractor Singapore",
-    "Commercial Maintenance Singapore",
-    "Residential Maintenance Singapore",
     "Property Maintenance Singapore",
+    "Building Repair Singapore",
     "GMS LEE PTE LTD",
   ],
 
   authors: [
     {
       name: "GMS LEE PTE LTD",
+      url: "https://www.gmsleepteltd.com",
     },
   ],
 
   creator: "GMS LEE PTE LTD",
 
   publisher: "GMS LEE PTE LTD",
+
+  category: "Business",
+
+  alternates: {
+    canonical: "https://www.gmsleepteltd.com",
+  },
 
   robots: {
     index: true,
@@ -68,20 +77,34 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
 
-  alternates: {
-    canonical: "https://www.gmsleepteltd.com",
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
   },
 
   openGraph: {
-    title: "Handyman & Building Maintenance Services Singapore",
+    title: "Handyman, Renovation & Building Maintenance Services in Singapore",
+
     description:
-      "Reliable handyman, renovation, painting, electrical and plumbing services for homes and businesses across Singapore.",
+      "Reliable handyman, renovation, painting, plumbing, electrical and building maintenance services for homes and businesses across Singapore.",
 
     url: "https://www.gmsleepteltd.com",
 
@@ -103,14 +126,23 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "GMS LEE PTE LTD",
+
+    title: "Handyman, Renovation & Building Maintenance Services in Singapore",
+
     description:
-      "Professional handyman & building maintenance services in Singapore.",
+      "Professional handyman, renovation, plumbing, electrical, painting and building maintenance services across Singapore.",
 
     images: ["/og-image.jpg"],
   },
 
-  category: "Business",
+  // Add this after verifying your website in Google Search Console
+  // verification: {
+  //   google: "YOUR_GOOGLE_SITE_VERIFICATION_CODE",
+  // },
+
+  other: {
+    "theme-color": "#14181B",
+  },
 };
 
 export default function RootLayout({
@@ -118,13 +150,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "GMS LEE PTE LTD",
+    url: "https://www.gmsleepteltd.com",
+    logo: "https://www.gmsleepteltd.com/logo.png",
+    image: "https://www.gmsleepteltd.com/og-image.jpg",
+    telephone: "+65 XXXXXXXX", // Replace with your phone number
+    email: "info@gmsleepteltd.com", // Replace with your email
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "SG",
+    },
+    areaServed: "Singapore",
+    priceRange: "$$",
+    openingHours: "Mo-Sa 08:00-18:00",
+    description:
+      "Professional handyman, renovation, painting, plumbing, electrical and building maintenance services across Singapore.",
+  };
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${plusJakartaSans.variable} ${barlowCondensed.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
