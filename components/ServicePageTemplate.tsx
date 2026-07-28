@@ -1188,12 +1188,13 @@ export default function ServicePageTemplate({
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+  
 
   return (
     <>
       <SEOSchema data={data} />
       <div className="bg-[#ECE8DF]">
-        <NavBar scrolled onNavigate={goToSection} onSelectService={() => {}} />
+        <NavBar scrolled onNavigate={goToSection} onSelectService={(slug) => router.push(`/services/${slug}`)} />
         <main>
           <Hero data={data} onBack={() => goToSection("#services")} />
           <Overview data={data} />
