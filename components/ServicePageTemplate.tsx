@@ -1074,8 +1074,7 @@ function Footer() {
             </div>
             <div className={`${F_MONO} space-y-4 text-xs`}>
               <div className="flex items-start gap-3 text-[#ECE8DF]/55">
-                <MapPin size={13} className="text-gold mt-0.5" /> 102 Serangoon
-                RD, Singapore 218 007
+                <MapPin size={13} className="text-gold mt-0.5" /> 17 Veerasamy Rd, Singapore 207325
               </div>
               <div className="flex items-start gap-3 text-[#ECE8DF]/55">
                 <Shield size={13} className="text-gold mt-0.5" /> UEN 202235278W
@@ -1145,7 +1144,7 @@ function SEOSchema({ data }: { data: ServiceContent }) {
     email: "gmslee2022@gmail.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "102 Serangoon RD",
+      streetAddress: "17 Veerasamy Rd",
       addressLocality: "Singapore",
       postalCode: "218007",
       addressCountry: "SG",
